@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from app.services.product_service import ProductService
 from app.repositories.product_repository import ProductRepository
 from app.schemas.product_schema import ProductCreate, Product
+from typing import Optional
 
 router = APIRouter()
 
@@ -11,11 +12,11 @@ def create_products(product: ProductCreate,):
     service = ProductService(repository)
     return service.create_product(product)
 
-@router.get("/products/", response_model=list[Product])
-def read_products(skip: int = 0, limit: int = 100):
+@router.get("/product/{product_id}", response_model=Optional[dict])
+def read_products(product_id: int):
     repository = ProductRepository()
     service = ProductService(repository)
-    return service.get_product(skip, limit)
+    return service.get_product(product_id)
 
 #
 #@router.put("/products/{product_id}", response_model=product)

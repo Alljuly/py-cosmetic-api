@@ -2,7 +2,9 @@
 
 ### Está api será usada para gerenciar produtos como maquiagem, skincare, para cabelos, perfumes e etc.
 
-executar: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+executar: 
+pip install -r requirements.txt
+uvicorn main:app --reload
 
 
 Os produtos contém:

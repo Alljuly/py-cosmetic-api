@@ -7,10 +7,12 @@ class ProductRepository:
     def __init__(self):
         self.df = load_csv()
 
-    def get_product(self, product_id: int) -> Optional[dict]:
-        product = self.df[self.df["id"] == product_id]
-        if not product.empty:
-            return product.iloc[0].to_dict()
+    def get_product(self, product_id: int) -> list[dict]:
+        products = load_csv()
+        if not products.empty:
+            product = products.loc[products["id"] == product_id]
+            if not product.empty:
+                return product.to_dict(orient="records")[0]
         return None
     
 
